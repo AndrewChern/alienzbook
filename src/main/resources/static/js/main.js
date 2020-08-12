@@ -1,10 +1,11 @@
 
 function getIndex(list, id) {
     for (var i = 0; i < list.length; i++) {
-        if (list(i).id === id) {
+        if (list[i].id === id) {
             return i;
         }
     }
+
     return -1;
 }
 
@@ -88,7 +89,7 @@ Vue.component('messages-list', {
     '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
         '<message-row v-for="message in messages" :key="message.id" :message="message"' +
-        ':editMethod="editMethod" :messages="messages"/>' +
+        ':editMethod="editMethod" :messages="messages" />' +
     '</div>',
     created: function () {
         messageApi.get().then(result =>
@@ -98,7 +99,7 @@ Vue.component('messages-list', {
         )
     },
     methods: {
-        editMessage: function (message) {
+        editMethod: function (message) {
             this.message = message;
         }
     }
